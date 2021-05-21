@@ -10,8 +10,12 @@ export default function Rhino(props) {
       <mesh
         geometry={nodes.Alfred_Jacquemart.geometry}
         material={materials['Default OBJ']}
-        rotation={[0, 0, Math.PI]}
-      />
+        rotation={[0, Math.PI*2.25, Math.PI]}
+        position={[0, 100, 50]}
+        scale={[0.2, 0.2, 0.2]}
+      >
+        <meshPhysicalMaterial reflectivity={0.9} />
+      </mesh>
     </group>
   )
 }
