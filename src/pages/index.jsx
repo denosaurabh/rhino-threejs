@@ -1,15 +1,11 @@
 import { useState, useEffect, Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { PerspectiveCamera } from '@react-three/drei'
-import {
-  EffectComposer,
-  DepthOfField,
-  Bloom,
-  Noise,
-  Vignette,
-} from '@react-three/postprocessing'
+import { PerspectiveCamera, Stats, useDetectGPU } from '@react-three/drei'
 import dynamic from 'next/dynamic'
+
 import Rhino from '@/components/rhino'
+import Lights from '@/components/light'
+import Effects from '@/components/effects'
 
 const OrbitalControl = dynamic(() => import('@/components/controls'), {
   ssr: false,
@@ -21,12 +17,16 @@ const Page = ({ title }) => {
     height: 100,
   })
 
+
   const handleResize = () => {
     setWindowSize({
       width: window.innerWidth,
       height: window.innerHeight,
     })
   }
+
+  const GPUTier = useDetectGPU()
+  console.table(GPUTier)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -42,16 +42,17 @@ const Page = ({ title }) => {
       style={{
         width: windowSize.width,
         height: windowSize.height,
-        backgroundColor: '#0f0f0f',
       }}
       camera={null}
+      onCreated={({ gl }) => {
+        gl.setClearColor(0x020202);
+      }}
       concurrent
     >
-      <EffectComposer>
-        {/* <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={1000} /> */}
-      </EffectComposer>
 
       <OrbitalControl />
+
+      <Effects />
 
       <PerspectiveCamera
         makeDefault
@@ -61,20 +62,15 @@ const Page = ({ title }) => {
         position={[0, 0, 170]}
       />
 
-      <hemisphereLight
-        color={0xffeeb1}
-        groundColor='#000000'
-        intensity={4}
-        position={[100, 150, 0]}
-      />
+      <Lights />
 
-      <spotLight color={0xffa95c} intensity={4} castShadow={true} />
-
-      <axesHelper scale={500} />
+      {/* <axesHelper scale={500} /> */}
 
       <Suspense fallback={null}>
         <Rhino />
       </Suspense>
+
+      <Stats showPanel={0} className="stats" />
     </Canvas>
   )
 }
