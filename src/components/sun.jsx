@@ -1,15 +1,15 @@
 import React, { forwardRef } from 'react'
-import { SphereBufferGeometry, Matrix4, MeshBasicMaterial } from 'three'
-import { extend } from '@react-three/fiber'
+import { MeshBasicMaterial, CircleBufferGeometry, AmbientLight } from 'three'
+// import { extend } from '@react-three/fiber'
 // import dynamic from 'next/dynamic'
 
 // const BufferGeometryUtils = dynamic(() => import('three/examples/jsm/utils/BufferGeometryUtils'), {
 //     ssr: false,
 // })
 
-import { BufferGeometryUtils } from "three/examples/jsm/utils/BufferGeometryUtils";
+// import { BufferGeometryUtils } from "three/examples/jsm/utils/BufferGeometryUtils";
 
-extend({ BufferGeometryUtils })
+// extend({ BufferGeometryUtils })
 
 
 const Sun = forwardRef(function Sun(props, forwardRef) {
@@ -17,28 +17,14 @@ const Sun = forwardRef(function Sun(props, forwardRef) {
     //   forwardRef.current.rotation.z -= 0.01;
     // });
 
-    let blob = new SphereBufferGeometry(1, 4, 4);
-
-    for (let x = 0; x < 20; x++) {
-        const sphereGeometry = new SphereBufferGeometry(1, 4, 4);
-
-        sphereGeometry.applyMatrix4(
-            new Matrix4().makeTranslation(
-                Math.sin(((Math.PI * 2) / 20) * x) * 10,
-                Math.cos(((Math.PI * 2) / 20) * x) * 10,
-                0
-            )
-        );
-
-        blob = BufferGeometryUtils.mergeBufferGeometries([blob, sphereGeometry]);
-    }
+    let blob = new CircleBufferGeometry(30, 32);
 
     return (
         <mesh
             ref={forwardRef}
-            position={[0, 0, -15]}
+            position={[0, 0, -40]}
             geometry={blob}
-            material={new MeshBasicMaterial({ color: 0x00ffff })}
+            material={new MeshBasicMaterial({ color: 0xF0F0F0 })}
         />
     );
 });

@@ -1,4 +1,5 @@
 import { useState, useEffect, Suspense } from 'react'
+import { sRGBEncoding } from 'three'
 import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera, Stats, useDetectGPU } from '@react-three/drei'
 import dynamic from 'next/dynamic'
@@ -45,8 +46,13 @@ const Page = ({ title }) => {
       }}
       camera={null}
       onCreated={({ gl }) => {
-        gl.setClearColor(0x020202);
+        gl.setClearColor(0x000000);
+        gl.outputEncoding = sRGBEncoding;
+
+        // gl.physicallyCorrectLights = true;
       }}
+      
+
       concurrent
     >
 
@@ -59,12 +65,12 @@ const Page = ({ title }) => {
         fov={50}
         near={1}
         far={5000}
-        position={[0, 0, 170]}
+        position={[50, 45, 170]}
       />
 
       <Lights />
 
-      {/* <axesHelper scale={500} /> */}
+      <axesHelper scale={500} />
 
       <Suspense fallback={null}>
         <Rhino />
