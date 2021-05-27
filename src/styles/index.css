@@ -16,3 +16,56 @@ body,
   display: none;
 }
 
+
+.annotation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; 
+  width: 200px;
+  color: #000;
+  /* background: rgba(0, 0, 0, 0.8); */
+  border-radius: .5em;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.2;
+
+  cursor: pointer;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  background: #fff;
+  
+  transition: 0.1s;
+}
+
+
+.annotation:hover {
+  transform: scale(0.9);
+}
+
+/* .annotation::before {
+  content: '+';
+  cursor: pointer;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 30px;
+  text-align: center;
+  background: #fff;
+
+} */
+
+#number {
+  position: absolute;
+  z-index: -1;
+}

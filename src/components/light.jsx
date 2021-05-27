@@ -1,13 +1,14 @@
 import { useRef } from 'react'
-import { PointLightHelper, SpotLightHelper } from 'three'
+import { PointLightHelper, SpotLightHelper, Vector3 } from 'three'
 import { useHelper } from '@react-three/drei'
 
 const Light = () => {
     const spotLightRef = useRef()
-    useHelper(spotLightRef, SpotLightHelper, 'cyan')
+    // useHelper(spotLightRef, SpotLightHelper, 'cyan')
 
     const pointLightRef = useRef()
-    useHelper(pointLightRef, SpotLightHelper, 'cyan')
+    // useHelper(pointLightRef, SpotLightHelper, 'cyan')
+
 
     return (
         <>

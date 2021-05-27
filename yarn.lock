@@ -4540,6 +4540,11 @@ jest-worker@^26.6.2:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+jotai@^0.16.6:
+  version "0.16.6"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-0.16.6.tgz#338b00fd1f9d19ece6dd31ea1c392a34522911d8"
+  integrity sha512-jXD/ZFqsnFrZhYH04PmhVhmq+kOFa1PxjkE9Woyj5fESCPYEBLV/rhf4zRlrqq5jOMgQCQaL7KlY+BsOJoyVKA==
+
 joycon@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/joycon/-/joycon-3.0.1.tgz#9074c9b08ccf37a6726ff74a18485f85efcaddaf"

@@ -29,6 +29,7 @@
     "@react-three/fiber": "^6.1.2",
     "@react-three/postprocessing": "^2.0.3",
     "esbuild-loader": "^2.12.0",
+    "jotai": "^0.16.6",
     "leva": "^0.9.10",
     "next": "^10.2.0",
     "postprocessing": "^6.21.5",

@@ -13,12 +13,11 @@ import Sun from '@/components/sun';
 
 const Effects = () => {
     const sunRef = useRef();
-    console.log(sunRef.current, 'sun')
 
     return (
         <>
 
-            <Sun ref={sunRef} />
+            {/* <Sun ref={sunRef} /> */}
 
             {
                 sunRef.current && (
