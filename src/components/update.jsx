@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import useStore from '@/helpers/store'
+import { Vector3 } from 'three'
 
 const PointsUpdate = () => {
     const points = useStore(state => state.points);
@@ -11,7 +12,7 @@ const PointsUpdate = () => {
     const sprite = useRef()
 
     const pointsArr = Object.values(points)
-    if (!pointsArr || pointsArr.length === 0 || !pointsArr[1].element.current) return <></>;
+    if (!pointsArr || pointsArr.length === 0 || !pointsArr[1]?.element?.current) return <></>;
 
     const annotationTex = points[1].element.current;
 
@@ -37,7 +38,6 @@ const PointsUpdate = () => {
 
         // console.log(camera.position, camera.rotation)
 
-        const annotation = points[1].element.current;
 
         // function updateAnnotationOpacity() {
         //     if (!rhinoRef) return;

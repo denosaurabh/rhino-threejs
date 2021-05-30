@@ -5,7 +5,9 @@ import {
     GodRays,
     ToneMapping,
     BrightnessContrast,
-} from '@react-three/postprocessing'
+} from '@react-three/postprocessing';
+import { ToneMappingMode } from 'postprocessing'
+
 // import { useResource } from "@react-three/fiber"; 
 import { BlendFunction, KernelSize, Resizer } from 'postprocessing'
 
@@ -36,6 +38,8 @@ const Effects = () => {
                             kernelSize={KernelSize.SMALL}
                             blur={true}
                         /> */}
+
+                        <ToneMappingMode mode={'ACES_FILMIC'} />
 
 
                     </EffectComposer>

@@ -14,25 +14,24 @@ const Points = () => {
 
     const point1Vector = new THREE.Vector3(-5, 30, 42) // left
     const point2Vector = new THREE.Vector3(-2, -20, 38) // land
-    const point3Vector = new THREE.Vector3(46, 27, 50) // horn
+    const point3Vector = new THREE.Vector3(-22, 35, 58) // horn
     const point4Vector = new THREE.Vector3(-40, 20, 48) // stomach
 
     useEffect(() => {
         if (point1.current) {
-            console.log('addingpoint')
-            addPoint('1', { element: point1, vector: point1Vector, cameraPosition: [-10, 10, 150], cameraRotation: [0, 0, 0] })
+            addPoint('1', { type: "left", element: point1, vector: point1Vector, cameraPosition: [13, 14, 154], cameraRotation: [-0.02, 0.1, 0] })
         }
 
         if (point2.current) {
-            addPoint('2', { element: point2, vector: point2Vector, cameraPosition: [-10, 10, 150], cameraRotation: [0, 0, 0] })
+            addPoint('2', { type: "land", element: point2, vector: point2Vector, cameraPosition: [13, 14, 154], cameraRotation: [-0.02, 0.1, 0] })
         }
 
         if (point3.current) {
-            addPoint('3', { element: point3, vector: point3Vector, cameraPosition: [134, 15, -11], cameraRotation: [0, 0.59, 0] })
+            addPoint('3', { type: "horn", element: point3, vector: point3Vector, cameraPosition: [121, 16, 25], cameraRotation: [2.5, 1.5, 2.5] })
         }
 
         if (point4.current) {
-            addPoint('4', { element: point4, vector: point4Vector, cameraPosition: [-10, 10, 150], cameraRotation: [0, 0, 0] })
+            addPoint('4', { type: "stomach", element: point4, vector: point4Vector, cameraPosition: [13, 14, 154], cameraRotation: [-0.02, 0.1, 0] })
         }
     }, [point1.current, point2, point3, point4])
 
@@ -43,10 +42,10 @@ const Points = () => {
 
     return (
         <>
-            <div className="annotation" ref={point1} data-no={'1'} onClick={onPointClick}>+</div>
-            <div className="annotation" ref={point2} data-no={'2'} onClick={onPointClick}>+</div>
-            <div className="annotation" ref={point3} data-no={'3'} onClick={onPointClick}>+</div>
-            <div className="annotation" ref={point4} data-no={'4'} onClick={onPointClick}>+</div>
+            <div className="annotation" ref={point1} data-no={'1'} onClick={onPointClick} />
+            <div className="annotation" ref={point2} data-no={'2'} onClick={onPointClick} />
+            <div className="annotation" ref={point3} data-no={'3'} onClick={onPointClick} />
+            <div className="annotation" ref={point4} data-no={'4'} onClick={onPointClick} />
         </>
     )
 }
