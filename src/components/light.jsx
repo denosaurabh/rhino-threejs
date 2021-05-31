@@ -17,8 +17,6 @@ const Light = () => {
 
             <spotLight ref={pointLightRef} color={0xFFFFFF} intensity={1} position={[200, 200, 1000]} distance={2000}
                 angle={Math.PI / 13} penumbra={1} decay={1} />
-
-            {/* <ambientLight color={0xF0F0F0} /> */}
         </>
     )
 }

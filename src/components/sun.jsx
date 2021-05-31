@@ -1,22 +1,7 @@
 import React, { forwardRef } from 'react'
-import { MeshBasicMaterial, CircleBufferGeometry, AmbientLight } from 'three'
-// import { extend } from '@react-three/fiber'
-// import dynamic from 'next/dynamic'
+import { MeshBasicMaterial, CircleBufferGeometry } from 'three'
 
-// const BufferGeometryUtils = dynamic(() => import('three/examples/jsm/utils/BufferGeometryUtils'), {
-//     ssr: false,
-// })
-
-// import { BufferGeometryUtils } from "three/examples/jsm/utils/BufferGeometryUtils";
-
-// extend({ BufferGeometryUtils })
-
-
-const Sun = forwardRef(function Sun(props, forwardRef) {
-    // useFrame(() => {
-    //   forwardRef.current.rotation.z -= 0.01;
-    // });
-
+const Sun = forwardRef(function Sun(_, forwardRef) {
     let blob = new CircleBufferGeometry(30, 32);
 
     return (

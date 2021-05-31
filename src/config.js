@@ -1,10 +1,10 @@
 import Head from 'next/head'
 
 const title = 'React Three Next Starter'
-const url = 'https://react-three-next.vercel.app/'
+const url = 'https://rhino.vercel.app/'
 const description =
-  'The easiest and fastest way to create a 3D website using React Three Fiber and NextJS'
-const author = 'Author'
+  '7 Facts about Rhino in 3D, made with React Three Fiber and NextJS'
+const author = 'denosaurabh'
 
 const Header = () => {
   return (

@@ -1,29 +1,72 @@
 import { useState, useEffect, Suspense } from 'react'
-import { sRGBEncoding, ACESFilmicToneMapping, ToneMapping } from 'three'
+import { sRGBEncoding } from 'three'
 import { Canvas } from '@react-three/fiber'
-import { Stats, useDetectGPU, Sky } from '@react-three/drei'
+import { Stats, useDetectGPU, Sky, OrbitControls } from '@react-three/drei'
+import { useSpring, animated, config } from "react-spring";
 import { useControls } from "leva"
 
 import Rhino from '@/components/rhino'
 import Lights from '@/components/light'
 import Effects from '@/components/effects'
-import Points from '@/components/points'
-import PointsUpdate from '@/components/update'
-import Camera from '@/components/camera'
 import Description from '@/components/description'
 import Loading from '@/components/modelLoading'
+import PointLocations from '@/helpers/pointsData'
+import Navigation from '@/components/navigation';
+import Point from '@/components/point';
 
-// const OrbitalControl = dynamic(() => import('@/components/controls'), {
-//   ssr: false,
-// })
+let selectedItemIndex;
+const initialCameraPos = [-10, 10, 200];
+const initialControlsTarget = [0, 0, 0];
 
-const Page = ({ title }) => {
+const Page = () => {
   const { axisHelper: showAxisHelper, showStats } = useControls({ axisHelper: false, showStats: false })
+
+  const [allPoints] = useState(PointLocations)
 
   const [windowSize, setWindowSize] = useState({
     width: 100,
     height: 100,
   })
+
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const AnimatedNavigation = animated(Navigation);
+  const AnimatedOrbitControls = animated(OrbitControls);
+
+  const [cameraValues, setCameraValues] = useState({
+    cachedPos: initialCameraPos,
+    cachedTarget: initialControlsTarget,
+    pos: initialCameraPos,
+    target: initialControlsTarget,
+    autoRotate: true
+  });
+
+  const onNavigationItemClicked = (id) => {
+    console.log(allPoints[id])
+
+    if (selectedItemIndex !== id && !isAnimating) {
+      selectedItemIndex = id;
+      setIsAnimating(true);
+      setCameraValues({
+        cachedPos: cameraValues.pos,
+        cachedTarget: cameraValues.cachedTarget,
+        pos: allPoints[selectedItemIndex].cameraPos,
+        target: allPoints[selectedItemIndex].position,
+        autoRotate: id === 0
+      });
+    }
+  }
+
+  const spring = useSpring({
+    pos: cameraValues.pos,
+    target: cameraValues.target,
+    from: {
+      pos: cameraValues.cachedPos,
+      target: cameraValues.cachedTarget
+    },
+    config: config.molasses,
+    onRest: () => setIsAnimating(false)
+  });
 
   const handleResize = () => {
     setWindowSize({
@@ -33,7 +76,6 @@ const Page = ({ title }) => {
   }
 
   const GPUTier = useDetectGPU()
-  console.table(GPUTier)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -46,7 +88,7 @@ const Page = ({ title }) => {
 
   return (
     <div>
-      <Points />
+      {/* <Points /> */}
       <Description />
 
       <Canvas
@@ -63,25 +105,39 @@ const Page = ({ title }) => {
         }}
         concurrent
       >
-
         <Effects />
-
         <Lights />
-        <Camera />
-
-
+        <AnimatedOrbitControls
+          autoRotate={cameraValues.autoRotate}
+          autoRotateSpeed={0.6}
+          minPolarAngle={Math.PI * 0.4}
+          maxPolarAngle={Math.PI * 0.6}
+          target={spring.target}
+          enableKeys={false}
+          enablePan={false}
+        />
 
         {showAxisHelper ? <axesHelper scale={500} /> : null}
-
-        <PointsUpdate />
-
+        <AnimatedNavigation cameraPosition={spring.pos} />
         <Suspense fallback={<Loading />}>
           <Rhino />
+          {isAnimating ? null : (
+            <group>
+              {
+                allPoints.map((_, i) => (
+                  <Point
+                    key={i}
+                    position={allPoints[i].position}
+                    name={allPoints[i].name}
+                    id={i}
+                    onMarkerClicked={onNavigationItemClicked}
+                  />
+                ))
+              }
+            </group>
+          )}
         </Suspense>
-
         {showStats ? <Stats showPanel={0} className="stats" /> : null}
-
-
         <Sky
           distance={10000}
           sunPosition={[0, 30, -1000]}
@@ -99,46 +155,3 @@ const Page = ({ title }) => {
 }
 
 export default Page
-
-/*
-
-----------------------------   Center View
-
- positionX: {
-      value: -10,
-      min: -200,
-      max: 300,
-      step: 0.1,
-    },
-    positionY: {
-      value: 10,
-      min: -200,
-      max: 300,
-      step: 0.1,
-    },
-    positionZ: {
-      value: 150,
-      min: -200,
-      max: 300,
-      step: 0.1,
-    },
-
-
-
----------------------------------  Horn View
-
-{"camRotateY":0.598}
-{"camRotateY":0.598}
-
-{"positionX":134.1}
-{"positionY":15.4}
-{"positionZ":-11}
-
-
-
-
-
-
-
-
-*/

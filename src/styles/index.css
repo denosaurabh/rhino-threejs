@@ -61,6 +61,13 @@ body,
   transition: 0.1s;
 }
 
+.annotation:hover {
+  transform: scale(2);
+ 
+  /* width: 20px; */
+  /* height: 20px; */
+}
+
 .description-image {
   margin-top: 15px;
 
@@ -72,9 +79,3 @@ body,
   filter: invert(1);
 }
 
-/* .annotation:hover {
-  width: 20px;
-  height: 20px;
-
-
-} */

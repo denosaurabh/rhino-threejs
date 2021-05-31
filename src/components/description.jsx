@@ -18,7 +18,6 @@ const Description = () => {
             <p>
                 Photo by <a href="https://unsplash.com/@bullterriere?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Simon Hurry</a> on <a href="https://unsplash.com/s/photos/rhino-horn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
             </p>
-
         </div>
     )
 }
