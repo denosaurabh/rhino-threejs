@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
 }
-  
+
 html,
 body,
 #__next {
@@ -16,8 +16,8 @@ body,
   font-family: 'Trap';
   src: url('/static/trap-regular.eot');
   src: url('/static/trap-regular.eot?#iefix') format('embedded-opentype'),
-      url('/static/trap-regular.woff2') format('woff2'),
-      url('/static/trap-regular.woff') format('woff');
+    url('/static/trap-regular.woff2') format('woff2'),
+    url('/static/trap-regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -26,9 +26,19 @@ body,
 @font-face {
   font-family: 'Trap';
   src: url('/static/trap-light.woff2') format('woff2'),
-      url('/static/trap-light.woff') format('woff'),
-      url('/static/trap-light.ttf') format('truetype');
+    url('/static/trap-light.woff') format('woff'),
+    url('/static/trap-light.ttf') format('truetype');
   font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brand';
+  src: url('/static/Brand.woff2') format('woff2'),
+    url('/static/Brand.woff') format('woff'),
+    url('/static/Brand.ttf') format('truetype');
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
@@ -37,12 +47,11 @@ body,
   display: none;
 }
 
-
 .annotation {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1; 
+  z-index: 1;
   color: #000;
   font-size: 14px;
   font-weight: bold;
@@ -57,25 +66,70 @@ body,
   font-weight: 800;
   text-align: center;
   background: #fff;
-  
+
   transition: 0.1s;
 }
 
 .annotation:hover {
   transform: scale(2);
- 
+
   /* width: 20px; */
   /* height: 20px; */
 }
 
+.loader-heading {
+  width: max-content;
+
+  font-family: Brand;
+  font-size: 32px;
+}
+
+.description-heading {
+  font-family: Brand;
+  font-size: 42px;
+
+  margin-bottom: 16px;
+}
+
+.description-text {
+  font-family: Trap;
+  font-size: 16px;
+  line-height: 22px;
+
+  margin-bottom: 20px;
+}
+
 .description-image {
   margin-top: 15px;
+  object-fit: cover;
+  background-size: cover;
 
   transition: 0.25s filter;
+}
+
+.description-credits {
+  font-family: Trap;
+  font-size: 12px;
+  color: rgb(92, 93, 95);
+  font-weight: 600;
+
+  margin-bottom: 8px;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.row {
+  margin-top: 0;
+  margin-right: 60px;
 }
 
 .description-image:hover {
   cursor: pointer;
   filter: invert(1);
 }
-

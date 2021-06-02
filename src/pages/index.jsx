@@ -29,6 +29,12 @@ const Page = () => {
   })
 
   const [isAnimating, setIsAnimating] = useState(false);
+  const [description, setDescription] = useState({
+    type: 'default',
+    pos: { top: '5%', left: '5%' }, 
+    size: { width: '300px', height: '90%' }, 
+    flexDirection: 'column',
+  });
 
   const AnimatedNavigation = animated(Navigation);
   const AnimatedOrbitControls = animated(OrbitControls);
@@ -42,10 +48,15 @@ const Page = () => {
   });
 
   const onNavigationItemClicked = (id) => {
-    console.log(allPoints[id])
-
     if (selectedItemIndex !== id && !isAnimating) {
       selectedItemIndex = id;
+
+      setDescription({
+        type: allPoints[selectedItemIndex].type,
+        pos: allPoints[selectedItemIndex].descriptionPos, 
+        size: allPoints[selectedItemIndex].descriptionSize, 
+        flexDirection: allPoints[selectedItemIndex].flexDirection 
+      })
       setIsAnimating(true);
       setCameraValues({
         cachedPos: cameraValues.pos,
@@ -89,7 +100,7 @@ const Page = () => {
   return (
     <div>
       {/* <Points /> */}
-      <Description />
+      <Description {...description} />
 
       <Canvas
         style={{

@@ -1,23 +1,30 @@
-import Image from 'next/image'
+import TopDescription from './descriptions/top'
+import HornDescription from './descriptions/horn'
+import FaceDescription from './descriptions/face';
+import LandDescription from './descriptions/land';
+import LegDescription from './descriptions/leg';
+import StomachDescription from './descriptions/stomach';
+import DefaultDescription from './descriptions/default';
 
-const Description = () => {
+const Description = ({ type, pos, size, flexDirection }) => {
 
     return (
-
-        <div style={{ position: 'absolute', top: '20%', right: '5%', zIndex: '100', display: 'flex', flexDirection: 'column', width: '18%', height: '100%' }}>
-            <h1 style={{ fontFamily: 'Trap', fontSize: '20px' }}>Rhino Horn</h1>
-            <p style={{ fontFamily: 'Trap', fontSize: '16px', lineHeight: '22px', fontWeight: 'lighter' }}>
-                Rhino horn is made up of keratin - the same protein which forms the basis of our hair and nails. Javan and greater one-horned rhinos only have one horn, whereas all the other rhino species have two horns.
-            </p>
-
-            <Image src="/img/rhino-horn.webp" width="100%" height="auto" className="description-image" />
-
-            <p style={{ marginTop: 'auto' }}>
-                Photo by <a href="https://unsplash.com/@gerandeklerk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Geran de Klerk</a> on <a href="https://unsplash.com/s/photos/rhino-horn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-            </p>
-            <p>
-                Photo by <a href="https://unsplash.com/@bullterriere?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Simon Hurry</a> on <a href="https://unsplash.com/s/photos/rhino-horn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-            </p>
+        <div style={{
+            position: 'absolute',
+            zIndex: '100',
+            display: 'flex',
+            flexWrap: 'wrap',
+            flexDirection,
+            ...pos,
+            ...size,
+        }}>
+            {type === 'default' ? <DefaultDescription /> : null}
+            {type === 'top' ? <TopDescription /> : null}
+            {type === 'horn' ? <HornDescription /> : null}
+            {type === 'stomach' ? <StomachDescription /> : null}
+            {type === 'face' ? <FaceDescription /> : null}
+            {type === 'land' ? <LandDescription /> : null}
+            {type === 'leg' ? <LegDescription /> : null}
         </div>
     )
 }
