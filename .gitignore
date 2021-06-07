@@ -1,5 +1,6 @@
 # 3D Model
 /models
+/public/models
 
 # dependencies
 /node_modules

@@ -13,6 +13,7 @@ import Loading from '@/components/modelLoading'
 import PointLocations from '@/helpers/pointsData'
 import Navigation from '@/components/navigation';
 import Point from '@/components/point';
+import RhinoTypes from '@/components/types';
 
 let selectedItemIndex;
 const initialCameraPos = [-10, 10, 200];
@@ -99,8 +100,8 @@ const Page = () => {
 
   return (
     <div>
-      {/* <Points /> */}
       <Description {...description} />
+      <RhinoTypes />
 
       <Canvas
         style={{
