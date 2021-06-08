@@ -7,7 +7,7 @@ const Sun = forwardRef(function Sun(_, forwardRef) {
     return (
         <mesh
             ref={forwardRef}
-            position={[0, 0, -40]}
+            position={[0, 0, -100]}
             geometry={blob}
             material={new MeshBasicMaterial({ color: 0xF0F0F0 })}
         />

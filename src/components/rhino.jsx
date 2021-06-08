@@ -1,10 +1,14 @@
 import React, { useRef } from 'react'
-import { sRGBEncoding } from 'three'
+import * as THREE from 'three'
 import { useGLTF, useTexture } from '@react-three/drei'
 import { useControls } from "leva"
+import { useAtom } from "jotai";
+
+import rhinoTypesData from '@/helpers/rhinoTypesData'
+import currentRhinoType from "@/helpers/rhinoTypesStore";
 
 export default function Rhino() {
-  const { metalness, roughness, color } = useControls({
+  const { metalness, roughness } = useControls({
     metalness: {
       value: 0.5,
       min: 0,
@@ -17,16 +21,18 @@ export default function Rhino() {
       max: 1,
       step: 0.01,
     },
-    color: '#c3c9d5'
   })
+  
+  const [currentType ] = useAtom(currentRhinoType)
+  const { textureFileName } = rhinoTypesData[currentType];
 
   const group = useRef()
 
   const { nodes, materials } = useGLTF('models/rhino-draco.glb')
   nodes.Alfred_Jacquemart.geometry.center()
 
-  const texture = useTexture(`/textures/gold.jpg`)
-  // texture.encoding = sRGBEncoding;
+  const texture = useTexture(`/textures/${textureFileName}`)
+  // texture.encoding = THREE.sRGBEncoding;
 
   let material = materials['Default OBJ'];
 
@@ -40,11 +46,9 @@ export default function Rhino() {
       >
         <meshPhysicalMaterial
           map={texture}
-          // color={color}
-          encoding={sRGBEncoding}
+          // encoding={THREE.sRGBEncoding}
           metalness={metalness}
           roughness={roughness}
-          reflectivity={0}
           needsUpdate={true}
         />
       </mesh>

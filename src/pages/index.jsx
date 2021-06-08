@@ -1,5 +1,6 @@
+import Head from 'next/head'
 import { useState, useEffect, Suspense } from 'react'
-import { sRGBEncoding } from 'three'
+import { ACESFilmicToneMapping, sRGBEncoding } from 'three'
 import { Canvas } from '@react-three/fiber'
 import { Stats, useDetectGPU, Sky, OrbitControls } from '@react-three/drei'
 import { useSpring, animated, config } from "react-spring";
@@ -14,9 +15,10 @@ import PointLocations from '@/helpers/pointsData'
 import Navigation from '@/components/navigation';
 import Point from '@/components/point';
 import RhinoTypes from '@/components/types';
+import { LinearToneMapping } from 'three'
 
 let selectedItemIndex;
-const initialCameraPos = [-10, 10, 200];
+const initialCameraPos = [-10, 10, 150];
 const initialControlsTarget = [0, 0, 0];
 
 const Page = () => {
@@ -100,8 +102,12 @@ const Page = () => {
 
   return (
     <div>
+      <Head>
+        <link rel="icon" href="/favicon.png"  />
+      </Head>
+
       <Description {...description} />
-      <RhinoTypes />
+      <RhinoTypes setDescription={setDescription} />
 
       <Canvas
         style={{
@@ -112,9 +118,20 @@ const Page = () => {
         onCreated={({ gl }) => {
           gl.setClearColor(0xf1f1f1);
 
-          gl.outputEncoding = sRGBEncoding;
+          gl.gammaFactor = 2.2;
+          gl.gammaOutput = true;
+          // gl.toneMapping = LinearToneMapping;
+          // gl.toneMappingExposure = 2;
+
+          /* 
+          0xf1f1f1, 0x2a2f33
+          */
+
+          // gl.physicallyCorrectLights = true;
+          // gl.outputEncoding = sRGBEncoding;
           gl.pixelRatio = 1;
         }}
+        color="#030405"
         concurrent
       >
         <Effects />
@@ -150,7 +167,7 @@ const Page = () => {
           )}
         </Suspense>
         {showStats ? <Stats showPanel={0} className="stats" /> : null}
-        <Sky
+        {/* <Sky
           distance={10000}
           sunPosition={[0, 30, -1000]}
           turbidity={10}
@@ -160,7 +177,7 @@ const Page = () => {
           elevation={2}
           azimuth={180}
           exposure={0.5}
-        />
+        /> */}
       </Canvas >
     </div >
   )

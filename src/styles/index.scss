@@ -155,6 +155,20 @@ a {
   }
 }
 
+.rhino-type-box {
+  position: absolute;
+  top: 20%;
+  right: 5%;
+
+  width: 18%;
+  height: 50%;
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 200;
+}
+
 .mt-auto {
   margin-top: auto;
 }

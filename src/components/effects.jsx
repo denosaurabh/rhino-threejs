@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import * as THREE from 'three' 
 import dynamic from 'next/dynamic'
 import {
     EffectComposer,
@@ -6,10 +7,7 @@ import {
     ToneMapping,
     BrightnessContrast,
 } from '@react-three/postprocessing';
-import { ToneMappingMode } from 'postprocessing'
-
-// import { useResource } from "@react-three/fiber"; 
-import { BlendFunction, KernelSize, Resizer } from 'postprocessing'
+import { ToneMappingMode, BlendFunction, KernelSize, Resizer } from 'postprocessing'
 
 import Sun from '@/components/sun';
 
@@ -39,7 +37,7 @@ const Effects = () => {
                             blur={true}
                         /> */}
 
-                        <ToneMappingMode mode={'ACES_FILMIC'} />
+                        {/* <ToneMappingMode mode={THREE.ACESFilmicToneMapping} /> */}
 
 
                     </EffectComposer>

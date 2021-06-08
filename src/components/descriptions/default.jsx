@@ -1,9 +1,12 @@
 import Image from 'next/image';
+import { useSpring, animated } from 'react-spring';
 
 const DefaultDescription = () => {
+  const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 2000 })
+
   return (
     <>
-      <h1 className="description-heading">Greater Rhino</h1>
+      <animated.h1 className="description-heading" style={props}>Greater Rhino</animated.h1>
       <p className="description-text">
         White, Black, Indian, Javan, and Sumatran make up the five species of rhino in the world. White and black rhinoceros are native to Africa, while Indian, Javan and Sumatran can be found in India and Asia. Due to widespread poaching, all rhinos are under threat, but the black rhino, Javan rhino and Sumatran rhino are classified as critically endangered and could become extinct in as few as three generations.
       </p>
