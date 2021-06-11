@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useSpring, animated } from 'react-spring';
 
 const DefaultDescription = () => {
-  const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 2000 })
+  const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 200 })
 
   return (
     <>

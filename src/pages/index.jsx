@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import { useState, useEffect, Suspense } from 'react'
-import { ACESFilmicToneMapping, sRGBEncoding } from 'three'
 import { Canvas } from '@react-three/fiber'
-import { Stats, useDetectGPU, Sky, OrbitControls } from '@react-three/drei'
+import { Stats, useDetectGPU, OrbitControls } from '@react-three/drei'
 import { useSpring, animated, config } from "react-spring";
 import { useControls } from "leva"
 
@@ -15,7 +14,7 @@ import PointLocations from '@/helpers/pointsData'
 import Navigation from '@/components/navigation';
 import Point from '@/components/point';
 import RhinoTypes from '@/components/types';
-import { LinearToneMapping } from 'three'
+import Sources from '@/components/sources'
 
 let selectedItemIndex;
 const initialCameraPos = [-10, 10, 150];
@@ -108,6 +107,7 @@ const Page = () => {
 
       <Description {...description} />
       <RhinoTypes setDescription={setDescription} />
+      <Sources />
 
       <Canvas
         style={{

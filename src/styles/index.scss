@@ -169,6 +169,28 @@ a {
   z-index: 200;
 }
 
+.sources {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+
+  display: flex;
+  flex-direction: column;
+
+  text-align: right;
+
+  h6 {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  a {
+    color: grey;
+  }
+
+  z-index: 200;
+}
+
 .mt-auto {
   margin-top: auto;
 }
