@@ -32,6 +32,11 @@ const Sources = () => {
                     https://www.lionworldtravel.com
                 </a>
             </p>
+            <p className="description-credits mt-auto">
+                <a href="https://threedscans.com/">
+                    https://threedscans.com/
+                </a>
+            </p>
         </div>
     )
 }
