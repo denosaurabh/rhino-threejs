@@ -28,7 +28,7 @@ export default function Rhino() {
 
   const group = useRef()
 
-  const { nodes, materials } = useGLTF('models/rhino-draco.glb')
+  const { nodes, materials } = useGLTF('models/rhino-draco-mini-super.glb')
   nodes.Alfred_Jacquemart.geometry.center()
 
   const texture = useTexture(`/textures/${textureFileName}`)

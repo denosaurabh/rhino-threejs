@@ -1,6 +1,7 @@
 # 3D Model
-/models
-/public/models
+/public/models/rhino-draco-mini.glb
+/public/models/rhino-draco.glb
+/public/models/rhino.glb
 
 # dependencies
 /node_modules
